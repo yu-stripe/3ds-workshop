@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>カード情報の管理</title>
+    <meta name="description" content="カード情報の管理デモ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="main.js" defer></script>
+    <script src="save-card.js" defer></script>
+  </head>
+  <body>
+    <div id="saved-cards" class="hidden">
+      <h2>保存済みのカード</h2>
+      <div id="saved-cards-list" class="card-list"></div>
+    </div>
+    <form id="payment-form">
+      <h2>新しいカードを追加</h2>
+      <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+      </div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">カードを保存</span>
+      </button>
+      <div id="payment-message" class="hidden"></div>
+    </form>
+    <h2>Recent Webhook Events</h2>
+    <ul id="webhook-events"></ul>
+    <div class="links">
+      <a href="signup.html" id="signup-link">サインアップページ</a>
+      <a href="products.html" id="products-link">商品購入ページ</a>
+    </div>
+  </body>
+</html>

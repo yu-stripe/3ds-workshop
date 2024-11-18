@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>ログイン</title>
+    <meta name="description" content="ユーザーログイン画面" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="signup.js" defer></script>
+  </head>
+  <body>
+    <form id="signup-form">
+      <div id="email-element">
+        <input type="email" id="email" name="email" placeholder="メールアドレス" required>
+      </div>
+      <div id="password-element">
+        <input type="password" id="password" name="password" placeholder="パスワード" required>
+      </div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">サインアップ</span>
+      </button>
+      <div id="signup-message" class="hidden"></div>
+    </form>
+    <div id="additional-options">
+      <p>
+        <a href="#" id="forgot-password">パスワードをお忘れですか？</a>
+      </p>
+      <p>
+        アカウントをお持ちでない方は<a href="#" id="create-account">こちら</a>
+      </p>
+    </div>
+  </body>
+</html>
+

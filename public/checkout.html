@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>カード情報の管理</title>
+    <meta name="description" content="カード情報の管理デモ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="main.js" defer></script>
+    <script src="checkout.js" defer></script>
+  </head>
+  <body>
+    <form id="payment-form">
+      <h2>商品の購入</h2>
+      <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+      </div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">購入</span>
+      </button>
+      <div id="payment-message" class="hidden"></div>
+    </form>
+    <div class="links">
+      <a href="signup.html" id="signup-link">サインアップページに戻る</a>
+      <a href="save-card.html" id="save-card-link">カード保存ページに戻る</a>
+    </div>
+  </body>
+</html>
