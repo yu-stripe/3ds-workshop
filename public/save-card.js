@@ -32,7 +32,7 @@ async function initialize() {
   // 保存済みのカード情報を取得
   await fetchSavedCards(customerId);
 
-  const response = await fetch("http://127.0.0.1:4242/create-setup-intent", {
+  const response = await fetch(`${backend}/create-setup-intent`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ customer_id: customerId }),
@@ -57,7 +57,7 @@ async function initialize() {
 
 async function fetchSavedCards(customerId) {
   try {
-    const response = await fetch(`http://127.0.0.1:4242/get-saved-cards?customer_id=${customerId}`);
+    const response = await fetch(`${backend}/get-saved-cards?customer_id=${customerId}`);
     const data = await response.json();
     if (data.cards && data.cards.length > 0) {
       displaySavedCards(data.cards);
@@ -75,8 +75,10 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmSetup({
     elements,
     confirmParams: {
-      return_url: "http://localhost:4242/save-card.html?customer_id=" + getCustomerId(),
+      return_url: 'https://example.com',
+      //return_url: `${window.location.origin}/save-card.html?customer_id=` + getCustomerId(),
     },
+    redirect: 'if_required',
   });
 
   if (error) {
@@ -132,7 +134,7 @@ async function fetchAndDisplayWebhookEvents() {
   const customerId = getCustomerId();
 
   try {
-    const response = await fetch(`/webhook-events/${customerId}`);
+    const response = await fetch(`${backend}/webhook-events/${customerId}`);
     const events = await response.json();
     const eventsList = document.getElementById('webhook-events');
     eventsList.innerHTML = '';

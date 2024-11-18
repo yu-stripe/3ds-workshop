@@ -32,7 +32,7 @@ async function initialize() {
   // 保存済みのカード情報を取得
   await fetchSavedCards(customerId);
 
-  const response = await fetch("http://127.0.0.1:4242/create-intent-and-customer-session", {
+  const response = await fetch(`${backend}/create-intent-and-customer-session`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ customer_id: customerId }),
@@ -50,7 +50,7 @@ async function initialize() {
 
 async function fetchSavedCards(customerId) {
   try {
-    const response = await fetch(`http://127.0.0.1:4242/get-saved-cards?customer_id=${customerId}`);
+    const response = await fetch(`${backend}/get-saved-cards?customer_id=${customerId}`);
     const data = await response.json();
     if (data.cards && data.cards.length > 0) {
       displaySavedCards(data.cards);
@@ -68,8 +68,9 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "http://localhost:4242/checkout.html?customer_id=" + getCustomerId(),
+      return_url: 'https://stripe.com',
     },
+    redirect: "if_required",
   });
 
   if (error) {
@@ -79,7 +80,7 @@ async function handleSubmit(e) {
       showMessage("An unexpected error occurred.");
     }
   } else {
-    showMessage("Setup successful!");
+    showMessage("購入 成功!");
     // 新しいカードが保存されたら、保存済みカードリストを更新
     const customerId = getCustomerId();
     await fetchSavedCards(customerId);

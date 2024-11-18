@@ -20,7 +20,7 @@ async function handleSubmit(e) {
 
     try {
         // サーバーサイドの /create-customer API を呼び出す
-        const response = await fetch("http://127.0.0.1:4242/create-customer", {
+        const response = await fetch(`${backend}/create-customer`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email })
