@@ -182,11 +182,11 @@ post '/webhook' do
 
       # SetupIntentのIDを追加
       if event.data.object.object == 'setup_intent'
-        event_data[:setup_intent_id] = event.data.object.id
+        customer_events[customer_id][:setup_intent_id] = event.data.object.id
       end
 
       if event.data.object.object == 'payment_intent'
-        event_data[:payment_intent_id] = event.data.object.id
+        customer_events[customer_id][:payment_intent_id] = event.data.object.id
       end
       # 各顧客の最新10件のイベントのみを保持
       customer_events[customer_id] = customer_events[customer_id].take(10)
