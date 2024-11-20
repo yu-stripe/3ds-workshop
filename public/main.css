@@ -229,3 +229,11 @@ input[type="email"], input[type="password"] {
 .links a:hover {
   text-decoration: underline;
 }
+
+#pay-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10vh;
+} 

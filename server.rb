@@ -113,6 +113,25 @@ end
 
 
 
+post '/create-intent-off-session' do
+  content_type 'application/json'
+  data = JSON.parse(request.body.read)
+
+  intent = Stripe::PaymentIntent.create({
+    amount: 1099,
+    currency: 'jpy',
+    customer: data['customer_id'],
+    payment_method: data['payment_method_id'],
+    off_session: true,
+    confirm: true
+  })
+
+  content_type :json
+  {
+    intent: intent
+  }.to_json
+end
+
 post '/create-intent-and-customer-session' do
   content_type 'application/json'
   data = JSON.parse(request.body.read)
