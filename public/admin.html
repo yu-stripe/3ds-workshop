@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>顧客のカード情報管理</title>
+    <meta name="description" content="顧客のカード情報管理デモ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="main.js" defer></script>
+    <script src="admin.js" defer></script>
+</head>
+<body>
+    <h2>顧客のカード情報管理</h2>
+    
+    <div id="customer-info">
+        <h3>顧客情報</h3>
+        <p><strong>名前:</strong> <span id="customer-name">佐藤太郎</span></p>
+        <p><strong>Email:</strong> <span id="customer-email">taro.sato@example.com</span></p>
+        <p><strong>顧客ID:</strong> <span id="customer-id"></span></p>
+    </div>
+
+    <div id="saved-cards" class="hidden">
+        <h3>保存済みのカード</h3>
+        <div id="saved-cards-list" class="card-list"></div>
+        <div id="pay-area">
+          <button id="pay-button" class="hidden">このカードで決済</button>
+        </div>
+      <div id="payment-message" class="hidden"></div>
+    </div>
+
+    <h3>Recent Webhook Events</h3>
+    <ul id="webhook-events"></ul>
+
+    <div class="links">
+        <a href="dashboard.html" id="dashboard-link">ダッシュボード</a>
+        <a href="products.html" id="products-link">商品購入ページ</a>
+    </div>
+</body>
+</html>

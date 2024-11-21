@@ -23,7 +23,7 @@ function addCustomerIdToUrl(customerId) {
 async function initialize() {
   const customerId = getCustomerId();
   if (!customerId) {
-    showMessage("Customer ID not found. Please log in again.");
+    showMessage("サインアップされてません");
     return;
   }
 
@@ -76,7 +76,6 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       return_url: 'https://example.com',
-      //return_url: `${window.location.origin}/save-card.html?customer_id=` + getCustomerId(),
     },
     redirect: 'if_required',
   });
