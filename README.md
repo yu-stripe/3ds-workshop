@@ -5,22 +5,26 @@
 ## 3つのユーザーストーリー
 
 ![signup.html](/image/signup.html.png) 
+_signup.html_
 
 ### ユーザーストーリー1
 
 ![save-card.html](/image/save-card.html.png) 
+_save-card.html_
 
 サインアップして、アカウントに対して、カードを保存します。ここでは商品やサービスの購入は行われず、カードの有効性を確認し、カードの保存を行います。
 
 ### ユーザーストーリー2
 
 ![checout.html](/image/checkout.html.png) 
+_checkout.html_
 
 保存したカードで、商品を購入します。セキュアなログインを前提に、カードの入力を省略し、保存済みのカードで決済を行います。
 
 ### ユーザーストーリー3
 
 ![admin.html](/image/admin.html.png) 
+_admin.html_
 
 加盟店起因で、管理画面から、保存されたカードで決済を行います。例えば、定期購入や、サブスクリプションのような決済です。
 
