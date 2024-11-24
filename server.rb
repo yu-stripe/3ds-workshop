@@ -32,7 +32,6 @@ post '/create-setup-intent' do
 
   # Create a PaymentIntent with amount and currency
   payment_intent = Stripe::SetupIntent.create(
-    usage: 'on_session',
     customer: data['customer_id'],
     payment_method_types: ['card'],
   )
@@ -143,6 +142,7 @@ post '/create-intent-and-customer-session' do
     # is optional because Stripe enables its functionality by default.
     automatic_payment_methods: { enabled: true },
     customer: data['customer_id'],
+    metadata: data['metadata'],
   })
 
   customer_session = Stripe::CustomerSession.create({
