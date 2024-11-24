@@ -2,10 +2,6 @@ let selectedCardId = null;
 
 initialize();
 
-function getCustomerId() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('customer_id');
-}
 
 async function initialize() {
   const customerId = getCustomerId();
@@ -13,6 +9,7 @@ async function initialize() {
     showMessage("顧客が指定されていません。");
     return;
   }
+  addCustomerIdToUrl(customerId);
 
   document.getElementById('customer-id').textContent = customerId;
 

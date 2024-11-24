@@ -8,17 +8,6 @@ document
   .querySelector("#payment-form")
   .addEventListener("submit", handleSubmit);
 
-function getCustomerId() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('customer_id');
-}
-
-function addCustomerIdToUrl(customerId) {
-  const productsLink = document.getElementById('products-link');
-  if (customerId) {
-    productsLink.href = `checkout.html?customer_id=${customerId}`;
-  }
-}
 
 async function initialize() {
   const customerId = getCustomerId();

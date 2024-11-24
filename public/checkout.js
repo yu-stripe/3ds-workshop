@@ -8,17 +8,6 @@ document
   .querySelector("#payment-form")
   .addEventListener("submit", handleSubmit);
 
-function getCustomerId() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('customer_id');
-}
-
-function addCustomerIdToUrl(customerId) {
-  const saveCardLink = document.getElementById('save-card-link');
-  if (customerId) {
-    saveCardLink.href = `save-card.html?customer_id=${customerId}`;
-  }
-}
 
 async function initialize() {
   const customerId = getCustomerId();

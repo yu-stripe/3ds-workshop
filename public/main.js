@@ -15,3 +15,19 @@ function showMessage(messageText) {
     messageContainer.textContent = "";
   }, 4000);
 }
+
+
+function getCustomerId() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('customer_id');
+}
+
+function addCustomerIdToUrl(customerId) {
+  const customerLinks = document.querySelectorAll('a.customer-link');
+
+  customerLinks.forEach(linkElement => {
+    if (customerId) {
+      linkElement.href = `${linkElement.href.split('?')[0]}?customer_id=${customerId}`;
+    }
+  });
+}
