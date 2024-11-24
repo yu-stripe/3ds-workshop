@@ -114,22 +114,3 @@ function showMessage(messageText) {
   }, 4000);
 }
 
-async function fetchAndDisplayWebhookEvents() {
-  const customerId = getCustomerId();
-
-  try {
-    const response = await fetch(`${backend}/webhook-events/${customerId}`);
-    const events = await response.json();
-    const eventsList = document.getElementById('webhook-events');
-    eventsList.innerHTML = '';
-
-    events.forEach(event => {
-      const li = document.createElement('li');
-      li.textContent = `ID: ${event.id} - ${event.type} - ${new Date(event.created * 1000).toLocaleString()}`;
-      eventsList.appendChild(li);
-    });
-  } catch (error) {
-    console.error('Error fetching webhook events:', error);
-  }
-}
-

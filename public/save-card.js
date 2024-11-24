@@ -128,31 +128,6 @@ function setDpmCheckerLink(url) {
 }
 
 
-// Webhookイベントを取得して表示する関数
-async function fetchAndDisplayWebhookEvents() {
-  const customerId = getCustomerId();
-
-  try {
-    const response = await fetch(`${backend}/webhook-events/${customerId}`);
-    const events = await response.json();
-    const eventsList = document.getElementById('webhook-events');
-    eventsList.innerHTML = '';
-
-    events.forEach(event => {
-      const li = document.createElement('li');
-      let eventText = `ID: ${event.id} - ${event.type} - ${new Date(event.created * 1000).toLocaleString()}`;
-      if (event.setup_intent_id) {
-        eventText += ` - SetupIntent ID: ${event.setup_intent_id}`;
-      }
-      li.textContent = eventText;
-      eventsList.appendChild(li);
-    });
-  } catch (error) {
-    console.error('Error fetching webhook events:', error);
-  }
-}
-
-
 function displaySavedCards(cards) {
   const savedCardsContainer = document.getElementById('saved-cards');
   const savedCardsList = document.getElementById('saved-cards-list');
