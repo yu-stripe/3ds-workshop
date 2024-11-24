@@ -18,9 +18,6 @@ async function initialize() {
 
   addCustomerIdToUrl(customerId);
 
-  // 保存済みのカード情報を取得
-  await fetchSavedCards(customerId);
-
   const response = await fetch(`${backend}/create-intent-and-customer-session`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -36,19 +33,6 @@ async function initialize() {
   const paymentElement = elements.create("payment");
   paymentElement.mount("#payment-element");
 }
-
-async function fetchSavedCards(customerId) {
-  try {
-    const response = await fetch(`${backend}/get-saved-cards?customer_id=${customerId}`);
-    const data = await response.json();
-    if (data.cards && data.cards.length > 0) {
-      displaySavedCards(data.cards);
-    }
-  } catch (error) {
-    console.error('Error fetching saved cards:', error);
-  }
-}
-
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -72,7 +56,6 @@ async function handleSubmit(e) {
     showMessage("購入 成功!");
     // 新しいカードが保存されたら、保存済みカードリストを更新
     const customerId = getCustomerId();
-    await fetchSavedCards(customerId);
   }
 
   setLoading(false);
@@ -90,45 +73,4 @@ function setLoading(isLoading) {
     document.querySelector("#spinner").classList.add("hidden");
     document.querySelector("#button-text").classList.remove("hidden");
   }
-}
-
-function setDpmCheckerLink(url) {
-  document.querySelector("#dpm-integration-checker").href = url;
-}
-
-
-function displaySavedCards(cards) {
-  const savedCardsContainer = document.getElementById('saved-cards');
-  const savedCardsList = document.getElementById('saved-cards-list');
-  savedCardsList.innerHTML = '';
-
-  if (cards.length === 0) {
-    savedCardsContainer.classList.add('hidden');
-    return;
-  }
-
-  cards.forEach(card => {
-    const listItem = document.createElement('div');
-    listItem.classList.add('card-item');
-
-    const cardInfo = document.createElement('div');
-    cardInfo.classList.add('card-info');
-
-    const cardNumber = document.createElement('div');
-    cardNumber.classList.add('card-number');
-    cardNumber.textContent = `**** **** **** ${card.last4}`;
-
-    const cardExpiry = document.createElement('div');
-    cardExpiry.classList.add('card-expiry');
-    cardExpiry.textContent = `${card.exp_month}/${card.exp_year}`;
-
-    cardInfo.appendChild(cardNumber);
-    cardInfo.appendChild(cardExpiry);
-
-    listItem.appendChild(cardInfo);
-
-    savedCardsList.appendChild(listItem);
-  });
-
-  savedCardsContainer.classList.remove('hidden');
 }

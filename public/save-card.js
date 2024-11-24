@@ -56,7 +56,6 @@ async function fetchSavedCards(customerId) {
   }
 }
 
-
 async function handleSubmit(e) {
   e.preventDefault();
   setLoading(true);
@@ -102,7 +101,6 @@ function setLoading(isLoading) {
 function setDpmCheckerLink(url) {
   document.querySelector("#dpm-integration-checker").href = url;
 }
-
 
 function displaySavedCards(cards) {
   const savedCardsContainer = document.getElementById('saved-cards');
