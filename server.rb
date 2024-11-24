@@ -32,7 +32,6 @@ post '/create-setup-intent' do
 
   # Create a PaymentIntent with amount and currency
   payment_intent = Stripe::SetupIntent.create(
-    usage: 'on_session',
     customer: data['customer_id'],
     payment_method_types: ['card'],
   )
