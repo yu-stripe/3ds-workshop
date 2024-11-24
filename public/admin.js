@@ -102,15 +102,3 @@ async function processPayment(cardId, amount) {
     showMessage("決済中にエラーが発生しました。");
   }
 }
-
-function showMessage(messageText) {
-  const messageContainer = document.querySelector("#payment-message");
-  messageContainer.textContent = messageText;
-  messageContainer.classList.remove("hidden");
-
-  setTimeout(() => {
-    messageContainer.classList.add("hidden");
-    messageContainer.textContent = "";
-  }, 4000);
-}
-

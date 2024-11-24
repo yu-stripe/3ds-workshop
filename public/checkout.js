@@ -88,19 +88,6 @@ async function handleSubmit(e) {
 
   setLoading(false);
 }
-// ------- UI helpers -------
-
-function showMessage(messageText) {
-  const messageContainer = document.querySelector("#payment-message");
-
-  messageContainer.classList.remove("hidden");
-  messageContainer.textContent = messageText;
-
-  setTimeout(function () {
-    messageContainer.classList.add("hidden");
-    messageContainer.textContent = "";
-  }, 4000);
-}
 
 // Show a spinner on payment submission
 function setLoading(isLoading) {

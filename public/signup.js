@@ -46,18 +46,6 @@ async function handleSubmit(e) {
     setLoading(false);
 }
 
-function showMessage(messageText) {
-    const messageContainer = document.querySelector("#singup-message");
-
-    messageContainer.classList.remove("hidden");
-    messageContainer.textContent = messageText;
-
-    setTimeout(function () {
-        messageContainer.classList.add("hidden");
-        messageContainer.textContent = "";
-    }, 4000);
-}
-
 function setLoading(isLoading) {
     if (isLoading) {
         document.querySelector("#submit").disabled = true;
