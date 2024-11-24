@@ -143,6 +143,7 @@ post '/create-intent-and-customer-session' do
     # is optional because Stripe enables its functionality by default.
     automatic_payment_methods: { enabled: true },
     customer: data['customer_id'],
+    metadata: data['metadata'],
   })
 
   customer_session = Stripe::CustomerSession.create({
