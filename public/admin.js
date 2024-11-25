@@ -82,7 +82,7 @@ async function processPayment(cardId, amount) {
     const response = await fetch(`${backend}/create-intent-off-session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ customer_id: customerId, payment_method_id: 'pm_1QN2ygEzgtKktpOy1mVGnHbT' }),
+      body: JSON.stringify({ customer_id: customerId, payment_method_id: cardId}),
     });
 
 
