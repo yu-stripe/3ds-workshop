@@ -27,6 +27,7 @@ async function fetchSavedCards(customerId) {
     const data = await response.json();
     if (data.cards && data.cards.length > 0) {
       displaySavedCards(data.cards);
+      displayCustomerInfo(data.customer); 
     }
   } catch (error) {
     console.error('Error fetching saved cards:', error);
@@ -98,4 +99,18 @@ async function processPayment(cardId, amount) {
     console.error('Error processing payment:', error);
     showMessage("決済中にエラーが発生しました。");
   }
+}
+
+
+function displayCustomerInfo(customerData) {
+    // 顧客情報を更新するHTML要素を取得
+  const customerEmailElement = document.getElementById("customer-email");
+  const customerIdElement = document.getElementById("customer-id");
+  const customerCreatedElement = document.getElementById("customer-created"); 
+
+  customerEmailElement.textContent = customerData.email;
+  customerIdElement.textContent = customerData.id;
+
+  const createdDate = new Date(customerData.created * 1000); // UNIXタイムスタンプをミリ秒に変換
+  customerCreatedElement.textContent = createdDate.toLocaleString('ja-JP'); 
 }
