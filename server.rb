@@ -33,12 +33,11 @@ post '/create-setup-intent' do
   payment_intent = Stripe::SetupIntent.create(
     customer: data['customer_id'],
     payment_method_types: ['card'],
+    future_usage: 'off_session'
   )
 
   {
     clientSecret: payment_intent.client_secret,
-    # [DEV]: For demo purposes only, you should avoid exposing the PaymentIntent ID in the client-side code.
-    dpmCheckerLink: "https://dashboard.stripe.com/settings/payment_methods/review?transaction_id=#{payment_intent.id}",
   }.to_json
 end
 
@@ -50,16 +49,10 @@ post '/create-payment-intent' do
   # Create a PaymentIntent with amount and currency
   payment_intent = Stripe::PaymentIntent.create(
     currency: 'jpy',
-    # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
-    automatic_payment_methods: {
-      enabled: true,
-    },
   )
 
   {
     clientSecret: payment_intent.client_secret,
-    # [DEV]: For demo purposes only, you should avoid exposing the PaymentIntent ID in the client-side code.
-    dpmCheckerLink: "https://dashboard.stripe.com/settings/payment_methods/review?transaction_id=#{payment_intent.id}",
   }.to_json
 end
 
