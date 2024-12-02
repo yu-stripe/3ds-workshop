@@ -10,9 +10,8 @@ document
 
 
 async function initialize() {
-  const customerId = getCustomerId();
+  const customerId = checkCustomerId();
   if (!customerId) {
-    showMessage("Customer ID not found. Please log in again.");
     return;
   }
 

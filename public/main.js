@@ -22,6 +22,18 @@ function getCustomerId() {
   return urlParams.get('customer_id');
 }
 
+function checkCustomerId() {
+  const customerId = getCustomerId();
+  if (!customerId) {
+    showMessage("Customer ID が見つかりません. サインアップしてください。");
+    setTimeout(() => {
+      window.location.href = 'signup.html';
+    }, 2000); 
+    return null; 
+  }
+  return customerId; 
+}
+
 function addCustomerIdToUrl(customerId) {
   const customerLinks = document.querySelectorAll('a.customer-link');
 
