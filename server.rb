@@ -99,7 +99,9 @@ get '/get-saved-cards' do
       }
     end
 
-    { cards: cards }.to_json
+    customer = Stripe::Customer.retrieve(customer_id)
+
+    { cards: cards, customer: customer }.to_json
   rescue Stripe::StripeError => e
     status 400
     { error: e.message }.to_json
