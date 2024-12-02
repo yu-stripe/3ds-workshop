@@ -1,6 +1,9 @@
 # Stripe 3Dセキュア Workshop
 
 3Dセキュアの仕様を理解し、StripeのPaymentElementを使って、3Dセキュアを扱う方法を学びます。
+全体のアーキテクチャーは以下のようになっています。
+
+![arch](/image/arch.png)
 
 ## 3つのユーザーストーリー
 
