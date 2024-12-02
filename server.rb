@@ -29,15 +29,14 @@ post '/create-setup-intent' do
   content_type 'application/json'
   data = JSON.parse(request.body.read)
 
-  # Create a PaymentIntent with amount and currency
-  payment_intent = Stripe::SetupIntent.create(
+  setup_intent = Stripe::SetupIntent.create(
     customer: data['customer_id'],
     payment_method_types: ['card'],
-    future_usage: 'off_session'
+    usage: 'off_session'
   )
 
   {
-    clientSecret: payment_intent.client_secret,
+    clientSecret: setup_intent.client_secret,
   }.to_json
 end
 
