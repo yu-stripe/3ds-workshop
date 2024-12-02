@@ -5,7 +5,7 @@ const backend = "https://threeds-workshop.onrender.com";
 
 // ------- UI helpers -------
 function showMessage(messageText) {
-  const messageContainer = document.querySelector("#payment-message");
+  const messageContainer = document.querySelector("#header-message");
 
   messageContainer.classList.remove("hidden");
   messageContainer.textContent = messageText;
@@ -13,7 +13,7 @@ function showMessage(messageText) {
   setTimeout(function () {
     messageContainer.classList.add("hidden");
     messageContainer.textContent = "";
-  }, 4000);
+  }, 6000);
 }
 
 

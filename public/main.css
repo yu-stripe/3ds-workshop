@@ -108,14 +108,6 @@ button:disabled {
   display: none;
 }
 
-#payment-message {
-  color: rgb(105, 115, 134);
-  font-size: 16px;
-  line-height: 20px;
-  padding-top: 12px;
-  text-align: center;
-}
-
 /* Responsive design */
 @media screen and (max-width: 600px) {
   body {
@@ -237,3 +229,23 @@ input[type="email"], input[type="password"] {
   justify-content: center;
   min-height: 10vh;
 } 
+
+#header-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #0055DE;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  z-index: 1000;         /* 他の要素の上に表示 */
+  transition: opacity 0.3s ease;   
+}
+
+.hidden {
+  display: none;
+  opacity: 0;            /* 隠すためのスタイル */
+}
+
