@@ -38,9 +38,6 @@ async function initialize() {
   
   paymentElement.mount("#payment-element");
 
-  // Event
-  fetchAndDisplayWebhookEvents();
-  setInterval(fetchAndDisplayWebhookEvents, 60000);
 }
 
 async function fetchSavedCards(customerId) {

@@ -16,9 +16,6 @@ async function initialize() {
   // 保存済みのカード情報を取得
   await fetchSavedCards(customerId);
 
-  // Webhookイベントを取得
-  fetchAndDisplayWebhookEvents();
-  setInterval(fetchAndDisplayWebhookEvents, 60000);
 }
 
 async function fetchSavedCards(customerId) {
