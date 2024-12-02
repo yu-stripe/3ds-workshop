@@ -2,7 +2,6 @@ require 'sinatra'
 require 'stripe'
 # This is your test secret API key.
 Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-stripe_webhook_secret = ENV['STRIPE_WEBHOOK_SECRET']
 
 set :static, true
 set :port, 4242
@@ -163,62 +162,4 @@ post '/create-intent-and-customer-session' do
     clientSecret: intent.client_secret,
     customerSessionClientSecret: customer_session.client_secret
   }.to_json
-end
-
-
-customer_events = {}
-
-post '/webhook' do
-  payload = request.body.read
-  sig_header = request.env['HTTP_STRIPE_SIGNATURE']
-  event = nil
-
-  begin
-    event = Stripe::Webhook.construct_event(
-      payload, sig_header, stripe_webhook_secret 
-    )
-  rescue JSON::ParserError => e
-    # Invalid payload
-    status 400
-    return
-  rescue Stripe::SignatureVerificationError => e
-    # Invalid signature
-    status 400
-    return
-  end
-
-  # payment_intentとsetup_intentのイベントのみを処理
-  if ['payment_intent', 'setup_intent'].include?(event.data.object.object)
-    customer_id = event.data.object.customer
-
-    if customer_id
-      customer_events[customer_id] ||= []
-      customer_events[customer_id].unshift({
-        type: event.type,
-        created: event.created,
-        id: event.data.object.id
-      })
-
-      # SetupIntentのIDを追加
-      if event.data.object.object == 'setup_intent'
-        customer_events[customer_id][:setup_intent_id] = event.data.object.id
-      end
-
-      if event.data.object.object == 'payment_intent'
-        customer_events[customer_id][:payment_intent_id] = event.data.object.id
-      end
-      # 各顧客の最新10件のイベントのみを保持
-      customer_events[customer_id] = customer_events[customer_id].take(10)
-    end
-  end
-
-  status 200
-end
-
-# Webhookイベントを返すエンドポイント
-get '/webhook-events/:customer_id' do
-  content_type :json
-
-  customer_id = params['customer_id']
-  (customer_events[customer_id] || []).to_json
 end
