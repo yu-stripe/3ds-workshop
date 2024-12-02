@@ -37,6 +37,7 @@ _admin.html_
 ### Stage 1
 
 1. コードをダウンロードして、サインアップページを開く
+   - [ ] コードをダウンロードします。github.com/yu-stripe/3ds-workshop です。[download方法](https://docs.github.com/ja/repositories/working-with-files/using-files/downloading-source-code-archives#downloading-source-code-archives-from-the-repository-view)
    - [ ] 全てのタスクは、`public/` 以下の編集で行えます
    - [ ] `public/signup.html` をブラウザで開いてください
 
