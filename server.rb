@@ -32,7 +32,12 @@ post '/create-setup-intent' do
   setup_intent = Stripe::SetupIntent.create(
     customer: data['customer_id'],
     payment_method_types: ['card'],
-    usage: 'off_session'
+    usage: 'off_session',
+    payment_method_options: {
+      card: {
+        request_three_d_secure: 'any'
+      }
+    }
   )
 
   {
