@@ -10,7 +10,6 @@ async function initialize() {
   }
 
   addCustomerIdToUrl(customerId);
-
   document.getElementById('customer-id').textContent = customerId;
 
   // 保存済みのカード情報を取得
@@ -64,7 +63,7 @@ function displaySavedCards(cards) {
   savedCardsContainer.classList.remove('hidden');
 }
 
-document.getElementById('pay-button').addEventListener('click', async () => {
+document.getElementById('submit').addEventListener('click', async () => {
   if (!selectedCardId) {
     showMessage("カードを選択してください。");
     return;
@@ -77,6 +76,7 @@ document.getElementById('pay-button').addEventListener('click', async () => {
 async function processPayment(cardId, amount) {
   try {
     const customerId = getCustomerId();
+    setLoading(true);
     const response = await fetch(`${backend}/create-intent-off-session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ async function processPayment(cardId, amount) {
 
 
     const result = await response.json();
-    console.log(result.intent.status)
+    setLoading(false);
     if (result.intent.status === "succeeded") {
       showMessage("決済成功!");
       // ここで必要に応じてページ遷移やUIの更新を行います

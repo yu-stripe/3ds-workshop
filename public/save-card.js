@@ -80,19 +80,6 @@ async function handleSubmit(e) {
   setLoading(false);
 }
 
-// Show a spinner on payment submission
-function setLoading(isLoading) {
-  if (isLoading) {
-    // Disable the button and show a spinner
-    document.querySelector("#submit").disabled = true;
-    document.querySelector("#spinner").classList.remove("hidden");
-    document.querySelector("#button-text").classList.add("hidden");
-  } else {
-    document.querySelector("#submit").disabled = false;
-    document.querySelector("#spinner").classList.add("hidden");
-    document.querySelector("#button-text").classList.remove("hidden");
-  }
-}
 
 function setDpmCheckerLink(url) {
   document.querySelector("#dpm-integration-checker").href = url;
