@@ -76,6 +76,7 @@ async function handleSubmit(e) {
     const customerId = getCustomerId();
     await fetchSavedCards(customerId);
   }
+  await initialize();
 
   setLoading(false);
 }
