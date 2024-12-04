@@ -56,6 +56,7 @@ async function handleSubmit(e) {
     // 新しいカードが保存されたら、保存済みカードリストを更新
     const customerId = getCustomerId();
   }
+  await initialize();
 
   setLoading(false);
 }
