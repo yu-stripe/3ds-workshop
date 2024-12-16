@@ -36,7 +36,7 @@ post '/create-setup-intent' do
     usage: 'off_session',
     payment_method_options: {
       card: {
-        request_three_d_secure: 'any'
+        request_three_d_secure: 'any' #　義務化のシミュレーションのための設定です。義務化以降はStipeが自動的に判定されます。
       }
     }
   )
