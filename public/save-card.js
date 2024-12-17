@@ -71,7 +71,7 @@ async function handleSubmit(e) {
       showMessage("An unexpected error occurred.");
     }
   } else {
-    showMessage("Setup successful!");
+    showMessage("新しいカードが保存されました!");
     // 新しいカードが保存されたら、保存済みカードリストを更新
     const customerId = getCustomerId();
     await fetchSavedCards(customerId);
