@@ -71,7 +71,10 @@
    - [ ] リスクが高い決済でかつ、metadataでカート情報を送り、再販性の高い商品である、 `key:value` = `product_sku:expensive_sku` を送信して、3Dセキュアの挙動を確認してください。
    - [ ] API `POST /${backend}/create-intent-and-customer-session`  は、以下の形で、リクエストをとります
        - ```
-         { customer_id: {{customerID}}, metadata: { {{key}}: {{value}} } }   
+         {
+         　　customer_id: {{customerID}},
+         　　metadata: { product_sku: 'expensive_sku' }
+         }   
          ```
 
 
