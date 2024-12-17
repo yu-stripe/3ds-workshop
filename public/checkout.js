@@ -27,9 +27,12 @@ async function initialize() {
   const appearance = {
     theme: 'stripe',
   };
+  const layout = {
+    type: 'accordion'
+  }
   elements = stripe.elements({ appearance, clientSecret, customerSessionClientSecret });
 
-  const paymentElement = elements.create("payment");
+  const paymentElement = elements.create("payment", { layout });
   paymentElement.mount("#payment-element");
 }
 
